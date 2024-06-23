@@ -23,12 +23,12 @@
     "express": "^4.19.2"
   },
   "eslintConfig": {
+    "extends": ["./node_modules/ts-standard/eslintrc.json"],
     "parserOptions": {
       "project": "./tsconfig.json"
-    },
-    "eslintIgnore": ["hello.js", "world.js"],
-    "extends": "build/*"
+    }
   },
+  "eslintIgnore": ["build/*"],
   "ts-standard": {
     "ignore": [
       "build"
