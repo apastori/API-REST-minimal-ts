@@ -4,15 +4,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+// Diaries Router
+const diaries_1 = __importDefault(require("./routes/diaries"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 const PORT = 3000;
-app.get("/ping", (req, res) => {
-    console.log("Request");
+app.get('/ping', (req, res) => {
+    console.log('Request');
     console.log(req);
-    console.log("Someone pinged here!!");
-    res.send("pong");
+    console.log('Someone pinged here!!');
+    res.send('pong');
 });
-app.listen(PORT, () => {
+app.use('/api/diaries', diaries_1.default);
+app.listen(PORT | 2000, () => {
     console.log(`Server running on port: ${PORT}`);
 });

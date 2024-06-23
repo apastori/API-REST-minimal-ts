@@ -6,9 +6,13 @@ import * as diaryServices from '../services/diaryServices'
 // DiaryEntry Type
 import type { DiaryEntry, NoIdDiaryEntry } from '../types'
 
+// New Diary Validation
+import toNewDiaryEntry from '../toNewDiaryEntry'
+
 const router: Router = Router()
 
 router.get('/', (_req: Request, res: Response) => {
+  console.log('GetRouterDiaries')
   res.send(diaryServices.getEntriesWithoutSensitiveInformation())
 })
 
@@ -24,7 +28,8 @@ router.post('/', (req: Request, _res: Response) => {
     visibility: req.body.visibility,
     comment: req.body.comment
   }
-  diaryServices.addDiary(newDiaryEntry)
+  const newDiaryEntryValidated: NoIdDiaryEntry = toNewDiaryEntry(newDiaryEntry)
+  diaryServices.addDiary(newDiaryEntryValidated)
 })
 
 export default router
